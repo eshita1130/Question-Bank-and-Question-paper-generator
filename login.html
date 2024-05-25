@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3759c1654e.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial Bold', 'sans-serif';
+            box-sizing: border-box;
+        }
+
+        body {
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-box {
+            max-width: 400px;
+            padding: 50px 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .form-box h1 {
+            color: darkblue;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            background: #f9f9f9;
+            border: 0;
+            outline: 0;
+            padding: 10px;
+            border-radius: 50px;
+        }
+
+        .btn-field {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background: #efba06;
+            color: black;
+            height: 40px;
+            width: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: larger;
+            border: 0;
+            outline: 0;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #6cc8e1;
+        }
+
+        .disable {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .img-container img {
+            max-width: 135%;
+            height: auto;
+        }
+
+        .flash {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-box">
+                    <h1 id="title">Sign Up/ Log in</h1>
+
+                    <form id="authForm" method="POST">
+                        <div class="input-field" id="nameField">
+                            <input type="text" name="name" id="name" placeholder="YOUR NAME">
+                        </div>
+                        <div class="input-field">
+                            <input type="email" name="email" id="email" placeholder="E-MAIL">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="password" id="password" placeholder="PASSWORD">
+                        </div>
+                        <p><a href="#">Forgot Password</a></p>
+                        <div class="btn-field">
+                            <button type="button" id="signupBtn">Sign up</button>
+                            <button type="button" id="loginBtn">Log in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="img-container">
+                    <img src="../static/2M1DNCP.jpg" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    let signupBtn = document.getElementById("signupBtn");
+    let loginBtn = document.getElementById("loginBtn");
+    let nameField = document.getElementById("nameField");
+    let title = document.getElementById("title");
+
+    let isLoginMode = false;
+
+    loginBtn.onclick = function () {
+        nameField.style.maxHeight = "60px";
+        title.innerHTML = "Log in";
+        signupBtn.classList.add("disable");
+        loginBtn.classList.remove("disable");
+        isLoginMode = true;
+        document.getElementById("authForm").action = "/login";
+    }
+
+    signupBtn.onclick = function () {
+        nameField.style.maxHeight = "60px";
+        title.innerHTML = "Sign up";
+        signupBtn.classList.remove("disable");
+        loginBtn.classList.add("disable");
+        isLoginMode = false;
+        document.getElementById("authForm").action = "/signup";
+    }
+    </script>
+</body>
+</html>
